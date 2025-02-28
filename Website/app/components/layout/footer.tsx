@@ -93,7 +93,7 @@ export function Footer() {
             {/* Logo and Name */}
             <div className="space-y-4">
               <Link href="/" className="flex items-center gap-2">
-                <Image src="/logo.png" alt="logo" width={40} height={40} />
+                <Image src="/logo.png" alt="logo" width={60} height={60} />
                 <span className="text-s font-bold"> Aswenna </span>
               </Link>
             </div>

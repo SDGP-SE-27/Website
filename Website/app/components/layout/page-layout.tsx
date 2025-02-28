@@ -1,18 +1,16 @@
 "use client";
 
-import { Navbar } from "./navbar";
 import { Footer } from "./footer";
+import { Navbar } from "./navbar";
 // import { AnimatedBackground } from "../ui/animated-background";
 // import { ChatBot } from "../ui/chatbot";
 
 export function PageLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-black">
-      {/* <AnimatedBackground /> */}
-      <Navbar />
+      {/* <Navbar /> */}
       <main className="min-h-screen pt-16">{children}</main>
-      <Footer />
-      {/* <ChatBot /> */}
+      {/* <Footer /> */}
     </div>
   );
 }

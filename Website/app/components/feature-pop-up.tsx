@@ -1,12 +1,14 @@
-import { motion } from "framer-motion";
-import { XIcon, CircleIcon } from "lucide-react";
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { Fragment } from "react";
 
 interface FeaturePopUpProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 export function FeaturePopUp({
@@ -17,50 +19,55 @@ export function FeaturePopUp({
   icon,
 }: FeaturePopUpProps) {
   return (
-    <>
+    <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center"
-        >
+        <Fragment>
           <motion.div
-            initial={{ opacity: 0, scaleX: 0.8, rotateY: 90 }}
-            animate={{ opacity: 1, scaleX: 1, rotateY: 1 }}
-            exit={{ opacity: 0, scaleX: 0.8, rotateY: 90 }}
-            transition={{ duration: 1, ease: [0.6, 0.05, 0.01, 0.9] }}
-            className="w-full max-w-2xl mx-auto px-4"
-          >
-            <div className="bg-[#1a1a1a] backdrop-blur-lg rounded-2xl p-8 border border-white/10 shadow-2xl relative">
-              <button
-                onClick={onClose}
-                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/25 z-50"
+            onClick={onClose}
+          />
+          <div className="fixed inset-0 overflow-y-auto z-50">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="w-full max-w-md transform overflow-hidden rounded-2xl bg-black p-6 text-left align-middle shadow-xl"
+                onClick={(e) => e.stopPropagation()}
               >
-                <XIcon className="w-6 h-6" />
-              </button>
-              <div className="flex items-start gap-6">
-                <div className="flex-shrink-0 transform transition-transform group-hover:scale-110 duration-300">
-                  {icon}
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-4 text-[#e1e1e1]">
-                    {title}
-                  </h3>
-                  <div className="text-gray-400 leading-relaxed whitespace-pre-line space-y-4">
-                    {description.split("\n").map((paragraph, index) => (
-                      <p key={index} className="mb-1">
-                        {paragraph}
-                      </p>
-                    ))}
+                <div className="flex flex-col gap-2 mb-7 mt-3">
+                  <div className="mb-1 flex items-center gap-2">
+                    <div className="h-8 flex items-center transform transition-transform duration-300">
+                      {icon}
+                    </div>
+                    <h3 className="text-2xl leading-8 text-white flex-shrink-0">
+                      {title}
+                    </h3>
                   </div>
                 </div>
-              </div>
+                <div className="mt-2">
+                  <p className="text-base text-gray-500 whitespace-pre-line">
+                    {description}
+                  </p>
+                </div>
+
+                <div className="mt-4">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    onClick={onClose}
+                  >
+                    Close
+                  </button>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </Fragment>
       )}
-    </>
+    </AnimatePresence>
   );
 }

@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { PageLayout } from "./components/layout/page-layout";
-import { TextEffect } from "./components/ui/text-effect";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FeaturePopUp } from "./components/feature-pop-up";
 import { FAQ } from "./components/faq";
+import { FadeText } from "./components/ui/fade-text";
+import { GridBackground } from "./components/ui/glowing-card";
+import { AnimatedTooltip } from "./components/ui/animated-tooltip";
 
 interface Feature {
   title: string;
@@ -21,7 +24,7 @@ export default function Home() {
     {
       title: "Price Prediction",
       description:
-        "Use a Machine Learning model built to predict the price of the crops monthly for next few months.\nCrops being tracked\nLong Beans\n\nBitter Gourd\n\nSnake Gourd\n\nBrinjals\n\nLady Finger Okra\n\nPapaya\n\nPineapple",
+        "Use a Machine Learning model built to predict the price of the crops monthly for next few months.\nCrops being tracked\n\nLong Beans\nBitter Gourd\nSnake Gourd\nBrinjals\nLady Finger Okra\nPapaya\nPineapple",
       icon: (
         <div className="relative w-16 h-16">
           <Image
@@ -39,7 +42,7 @@ export default function Home() {
     {
       title: "Disease Identification",
       description:
-        "Use a Machine Learning models and identify any disease.\nSimply take a picture of the diseased area and upload it we will identify and provide you with quick solutions while helping you contact your Agricultural Instructor for further assistance. \nCrops being tracked \n\nBanana\n\nBrinjals\n\nMango\n\nLady Finger Okra\n\nPapaya\n\nSnake Gourd",
+        "Use a Machine Learning models and identify any disease.\nSimply take a picture of the diseased area and upload it we will identify and provide you with quick solutions while helping you contact your Agricultural Instructor for further assistance. \n\nCrops being tracked \nBanana\nBrinjals\nMango\nLady Finger Okra\nPapaya\nSnake Gourd",
       icon: (
         <div className="relative w-16 h-16">
           <Image
@@ -132,39 +135,88 @@ export default function Home() {
         icon={selectedFeature?.icon}
       />
 
-      <div className="bg-white min-h-screen w-full relative overflow-hidden">
+      <div className="min-h-screen w-full relative overflow-hidden">
         <main className="relative">
           {/* Hero Section */}
-          <div className="container mx-auto px-4 border-10 border-solid border-red">
+          <div className="bg-[url('/images/main-background-img.jpg')] container mx-auto px-4 bg-cover bg-center">
             <div className="flex flex-col items-center justify-center h-screen">
-              <h1 className="text-5xl md:text-6xl font-bold mb-16 text-center">
-                <TextEffect
-                  per="word"
-                  preset="fade"
-                  className="text-black"
-                  imageLoad={true}
-                >
-                  {"Aswenna \nSmart Farming Assistant"}
-                </TextEffect>
+              <Image
+                src="/images/logo.png"
+                alt="logo"
+                width={100}
+                height={100}
+                className="w-30 h-30"
+              />
+              <h1 className="text-5xl md:text-6xl font-bold mb-16 text-center flex flex-col gap-4">
+                <FadeText
+                  direction="left"
+                  className="text-white"
+                  framerProps={{
+                    hidden: { opacity: 0, x: -100 },
+                    show: {
+                      opacity: 1,
+                      x: 0,
+                      transition: {
+                        type: "spring",
+                        duration: 1,
+                        delay: 0.2,
+                      },
+                    },
+                  }}
+                  text="Aswenna"
+                />
+                <FadeText
+                  direction="right"
+                  className="text-white"
+                  framerProps={{
+                    hidden: { opacity: 0, x: 100 },
+                    show: {
+                      opacity: 1,
+                      x: 0,
+                      transition: {
+                        type: "spring",
+                        duration: 1,
+                        delay: 0.4,
+                      },
+                    },
+                  }}
+                  text="Empowering smarter farming decisions for a thriving tomorrow"
+                />
               </h1>
+
+              <Link href="/dashboard">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-[#1bc643] via-[#016e43] to-[#473a31] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all mb-8 cursor-pointer"
+                >
+                  Try Aswenna →
+                </motion.button>
+              </Link>
             </div>
           </div>
 
           {/* Features */}
-          <div
-            className="container mx-auto mb-4 px-4 py-24 border-10 border-solid border-red"
-            id="features"
-          >
+          <div className="container mx-auto mb-4 px-4 py-24" id="features">
             <h2>
               <div className="text-4xl md:text-5xl font-bold text-center mb-16">
-                <TextEffect
-                  per="char"
-                  preset="fade"
-                  className="inline-flex bg-clip-text text-black"
-                  reverseScroll={true}
-                >
-                  {"Features We Provide"}
-                </TextEffect>
+                <FadeText
+                  direction="up"
+                  className="text-white"
+                  framerProps={{
+                    hidden: { opacity: 0, y: 20 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        type: "spring",
+                        duration: 1,
+                        delay: 0.2,
+                      },
+                    },
+                  }}
+                  text="Features We Provide"
+                />
               </div>
             </h2>
             <motion.div
@@ -174,32 +226,94 @@ export default function Home() {
               className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
             >
               {features.map((feature) => (
-                <motion.div
+                <GridBackground
                   key={feature.title}
-                  className="bg-[#2d2d2d] backdrop-blur-lg rounded-xl p-8 hover:bg-[#333] transition-all duration-300 border border-white/10 cursor-pointer shadow-lg hover:shadow-xl hover:shadow-black/20 group"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{
-                    opacity: selectedFeature?.title === feature.title ? 0 : 1,
-                    scale: selectedFeature?.title === feature.title ? 0.8 : 1,
-                  }}
+                  title={feature.title}
+                  description={feature.shortDescription}
+                  icon={feature.icon}
                   onClick={() => setSelectedFeature(feature)}
-                >
-                  <div className="mb-6 transform transition-transform group-hover:scale-110 duration-300">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-[#e1e1e1]">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 leading-relaxed">
-                    {feature.shortDescription}
-                  </p>
-                </motion.div>
+                  className={
+                    selectedFeature?.title === feature.title
+                      ? "opacity-0 scale-95"
+                      : ""
+                  }
+                />
               ))}
             </motion.div>
           </div>
           <div id="faq">
             <FAQ />
+          </div>
+          {/* Team Section */}
+          <div className="container mx-auto px-4 py-4 mb-6">
+            <h2>
+              <div className="text-4xl md:text-5xl font-bold text-center mb-16">
+                <FadeText
+                  direction="up"
+                  className="text-white"
+                  framerProps={{
+                    hidden: { opacity: 0, y: 20 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        type: "spring",
+                        duration: 1,
+                        delay: 0.2,
+                      },
+                    },
+                  }}
+                  text="Meet Our Team"
+                />
+              </div>
+            </h2>
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex justify-center items-center w-full"
+            >
+              <AnimatedTooltip
+                items={[
+                  {
+                    id: 1,
+                    name: "Ravindi Welagedara",
+                    designation: "Team Leader | Full Stack Developer",
+                    image: "/images/team/ravindi.jpeg",
+                  },
+                  {
+                    id: 2,
+                    name: "Lavindya Rathnayake",
+                    designation: "Full Stack Developer | UI/UX Designer",
+                    image: "/images/team/lavindya.jpeg",
+                  },
+                  {
+                    id: 3,
+                    name: "Ruhcira De Silva",
+                    designation: "Full Stack Developer | Web Developer",
+                    image: "/images/team/ruchira.jpg",
+                  },
+                  {
+                    id: 4,
+                    name: "Tharuka Jayawardena",
+                    designation: "ML Engineer | Full Stack Developer",
+                    image: "/team/member4.jpg",
+                  },
+                  {
+                    id: 5,
+                    name: "Oshada Wijayarathne",
+                    designation: "Full Stack Developer",
+                    image: "/images/team/oshada.jpeg",
+                  },
+                  {
+                    id: 6,
+                    name: "Akila De Silva",
+                    designation: "Full Stack Developer | Social Media Manager",
+                    image: "/images/team/akila.jpeg",
+                  },
+                ]}
+              />
+            </motion.div>
           </div>
         </main>
       </div>

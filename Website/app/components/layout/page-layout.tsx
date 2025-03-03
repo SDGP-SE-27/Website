@@ -2,15 +2,19 @@
 
 import { Footer } from "./footer";
 import { Navbar } from "./navbar";
-// import { AnimatedBackground } from "../ui/animated-background";
-// import { ChatBot } from "../ui/chatbot";
+import { BackgroundPaths } from "../ui/floating-paths";
 
 export function PageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-black">
-      {/* <Navbar /> */}
-      <main className="min-h-screen pt-16">{children}</main>
-      {/* <Footer /> */}
+    <div className="relative min-h-screen">
+      <div className="fixed inset-0 z-0">
+        <BackgroundPaths />
+      </div>
+      <div className="relative z-10">
+        <Navbar />
+        <main className="min-h-screen pt-16">{children}</main>
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -258,6 +258,11 @@ export function Footer() {
               </div>
             </div>
           </div>
+          <div className="border-t border-white/10 mt-8 pt-8 flex justify-center items-center">
+            <p className="text-gray-400 text-base">
+              © {currentYear} Aswenna. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </>

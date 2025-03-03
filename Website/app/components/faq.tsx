@@ -15,21 +15,6 @@ interface FAQProps {
   supportButtonText?: string;
 }
 
-const teamMembers = [
-  {
-    id: 1,
-    name: "Ravinidi Welagedara",
-    designation: "Team Leader",
-    image: "/images/logo.jpg",
-  },
-  {
-    id: 2,
-    name: "Lavindya Rathnayaka",
-    designation: "UI/UX Designer",
-    image: "/images/logo.jpg",
-  },
-];
-
 const faqItems = [
   {
     id: "1",

@@ -297,7 +297,7 @@ export default function Home() {
                     id: 4,
                     name: "Tharuka Jayawardena",
                     designation: "ML Engineer | Full Stack Developer",
-                    image: "/team/member4.jpg",
+                    image: "/images/team/tharuka.jpeg",
                   },
                   {
                     id: 5,

@@ -15,7 +15,6 @@ export function TypingAnimation({
   className,
 }: TypingAnimationProps) {
   const [displayedText, setDisplayedText] = useState<string>("");
-  const [i, setI] = useState<number>(0);
   const elementRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
@@ -24,17 +23,14 @@ export function TypingAnimation({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setDisplayedText("");
-            setI(0);
-            let typingEffect = setInterval(() => {
-              setI((prev) => {
-                if (prev < text.length) {
-                  setDisplayedText(text.substring(0, prev + 1));
-                  return prev + 1;
-                } else {
-                  clearInterval(typingEffect);
-                  return prev;
-                }
-              });
+            let currentIndex = 0;
+            const typingEffect = setInterval(() => {
+              if (currentIndex < text.length) {
+                setDisplayedText(text.substring(0, currentIndex + 1));
+                currentIndex++;
+              } else {
+                clearInterval(typingEffect);
+              }
             }, duration);
 
             return () => clearInterval(typingEffect);
@@ -44,13 +40,14 @@ export function TypingAnimation({
       { threshold: 0.5 }
     );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    const currentElement = elementRef.current;
+    if (currentElement) {
+      observer.observe(currentElement);
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
   }, [text, duration]);

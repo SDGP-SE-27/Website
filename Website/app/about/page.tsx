@@ -2,8 +2,7 @@
 
 import { PageLayout } from "../components/layout/page-layout";
 import { Timeline } from "../components/ui/timeline";
-import Image from "next/image";
-import { ThreeDPhotoCarousel } from "../components/ui/3d-carousel";
+import { TeamGrid } from "./team-grid";
 
 export default function AboutPage() {
   const data = [
@@ -12,9 +11,9 @@ export default function AboutPage() {
       content: (
         <div>
           <p>
-            The ultimate smart assistant for farmers in Sri Lanka's Western and
-            southern provinces who grow Long beans, Snake gourd, Brinjal, Ladies
-            fingers, Bitter gourd, Papaya, Pineapple, and TOM EJC.
+            The ultimate smart assistant for farmers in Sri Lanka&apos;s Western
+            and Southern provinces who grow Long beans, Snake gourd, Brinjal,
+            Ladies fingers, Bitter gourd, Papaya, Pineapple, and TOM EJC.
           </p>
         </div>
       ),
@@ -47,12 +46,22 @@ export default function AboutPage() {
   ];
   return (
     <PageLayout>
+      <div className="flex flex-col items-center justify-center mt-5 mb-30">
+        <h1 className="text-6xl font-bold mb-10">About Us</h1>
+        <div className="flex flex-col items-center justify-center w-1/2">
+          <p className="text-center text-gray-500 text-2xl">
+            We are a team of undergraduate software engineering students from
+            the University of Westminster.
+          </p>
+        </div>
+      </div>
+
       <Timeline data={data} />
 
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold">Our Team</h1>
+        {/* <h1 className="text-4xl font-bold">Our Team</h1> */}
         <div className="flex flex-col items-center justify-center">
-          <ThreeDPhotoCarousel />
+          <TeamGrid />
         </div>
       </div>
     </PageLayout>

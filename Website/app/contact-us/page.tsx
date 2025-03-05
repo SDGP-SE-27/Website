@@ -121,8 +121,8 @@ export default function ContactUsPage() {
             </div>
 
             <div className="mt-10 flex flex-col items-center">
-              <div className="grid grid-cols-2 gap-x-16 gap-y-8 max-w-2xl mx-auto w-full">
-                {socialLinks.map((social, index) => (
+              <div className="grid grid-cols-2 gap-8 max-w-2xl mx-auto w-full">
+                {socialLinks.map((social) => (
                   <Link
                     key={social.name}
                     href={social.url}
@@ -131,9 +131,7 @@ export default function ContactUsPage() {
                     className={`flex flex-col items-center gap-2 p-4 rounded-lg transition-all duration-300 
                     backdrop-blur-md bg-white/10 border border-white/20 shadow-lg
                     hover:bg-white/20 hover:border-white/30 hover:scale-105 ${
-                      index === 4
-                        ? "col-span-2 -translate-x-1/2 relative left-1/2"
-                        : ""
+                      social.name.toLowerCase() === "email" ? "col-span-2" : ""
                     }`}
                   >
                     {social.icon}
@@ -179,6 +177,8 @@ export default function ContactUsPage() {
                   </label>
                   <input
                     type="text"
+                    id="name"
+                    name="name"
                     value={feedback.name}
                     onChange={(e) =>
                       setFeedback({ ...feedback, name: e.target.value })

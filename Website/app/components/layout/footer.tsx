@@ -3,7 +3,15 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Youtube, Instagram, Linkedin, XIcon } from "lucide-react";
+import {
+  Facebook,
+  Youtube,
+  Instagram,
+  Linkedin,
+  XIcon,
+  MessageCircle,
+  Music2,
+} from "lucide-react";
 
 export function Footer() {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
@@ -254,6 +262,22 @@ export function Footer() {
                   className="text-gray-400 hover:text-[#71f897]"
                 >
                   <Linkedin className="w-7 h-7" />
+                </Link>
+                <Link
+                  href="https://whatsapp.com/channel/0029Vb8Gaft1t90gR0CPL30M"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#71f897]"
+                >
+                  <MessageCircle className="w-7 h-7" />
+                </Link>
+                <Link
+                  href="https://www.tiktok.com/@aswenna"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#71f897]"
+                >
+                  <Music2 className="w-7 h-7" />
                 </Link>
               </div>
             </div>

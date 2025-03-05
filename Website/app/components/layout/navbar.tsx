@@ -28,7 +28,7 @@ export function Navbar() {
           aria-label="Toggle menu"
         >
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 cursor-pointer"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"

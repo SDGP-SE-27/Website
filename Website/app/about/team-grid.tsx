@@ -33,7 +33,7 @@ const teamMembers: TeamMember[] = [
     name: "Ruchira De Silva",
     role: "Web Developer",
     description:
-      "I am the lead and main developer of the market price forecasting feature. I also worked on the development of the website",
+      "I am the lead and the main developer of the market price forecasting feature. I also worked on the development of the websites",
     image: "/images/team/ruchira.jpg",
     linkedin: "https://www.linkedin.com/in/ruchira-de-silva-71042133b/",
   },

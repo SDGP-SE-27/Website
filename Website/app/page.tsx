@@ -290,7 +290,8 @@ export default function Home() {
                   {
                     id: 3,
                     name: "Ruhcira De Silva",
-                    designation: "Full Stack Developer | Web Developer",
+                    designation:
+                      "Full Stack Developer | Web Developer | ML Engineer",
                     image: "/images/team/ruchira.jpg",
                   },
                   {
